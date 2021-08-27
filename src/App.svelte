@@ -12,7 +12,7 @@
 	let currentProject = "";
 	let projectLayout = false;
 
-	const debugmode = true;
+	const debugmode = false;
 	const username = "RobinBoers";
 
 	let showFinished = true;
@@ -429,7 +429,7 @@
 								</span>
 								<span class="issue-body">
 									{#if item.body !== null} 
-										{item.body}
+										{@html item.body}
 									{:else}
 										<i>Empty</i>
 									{/if}
