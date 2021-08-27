@@ -88,7 +88,7 @@
 							"description": "Something isn't working"
 						}
 						],
-						"state": "open",
+						"state": "closed",
 						"locked": false,
 						"assignee": null,
 						"assignees": [],
@@ -391,7 +391,21 @@
 
 			<button on:click={() => {projectLayout = false}}><i class="fas fa-arrow-left"></i> Back</button>
 			<button on:click={() => {window.location = getURL(currentProject)+"/issues/"}}><i class="fab fa-github"></i> View on GitHub</button>
-			<button on:click={() => {showFinished = !showFinished}}>Show finished</button>
+
+
+
+			<button on:click={() => {showFinished = !showFinished}}>
+
+				{#if showFinished}
+					<i class="fas fa-eye-slash"></i> Hide finished
+				{:else}
+					<i class="far fa-eye-slash"></i> Show finished 
+				{/if}
+			
+			</button>
+
+
+
 			<button on:click={() => {window.location = getURL(currentProject)+"/issues/new"}}  class="right"><i class="fas fa-plus"></i> New</button>
 
 			{#each issues as item, i}
@@ -408,6 +422,10 @@
 
 									<span class="num">#{item.number}</span>
 									{item.title}
+
+									{#if item.state === "closed"}
+										<i class="right">Finished</i>
+									{/if}
 								</span>
 								<span class="issue-body">
 									{#if item.body !== null} 
@@ -425,6 +443,10 @@
 
 								<span class="num">#{item.number}</span>
 								{item.title}
+
+								{#if item.state === "closed"}
+										<i class="right">Finished</i>
+								{/if}
 							</li>
 
 						{/if}
