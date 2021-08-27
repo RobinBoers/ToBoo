@@ -22,6 +22,12 @@ Run live server to test:
 npm run dev
 ```
 
+To build for production:
+
+```
+npm run build
+```
+
 ## Configuration
 
 You can configure three options:
