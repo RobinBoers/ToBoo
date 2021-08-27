@@ -101,9 +101,13 @@ li {
     font-size: 18px;
 }
 
-li:hover {
-    background-color: gainsboro;
+li:not(.selected):hover {
+    background-color: rgb(235, 235, 235);
     cursor: pointer;
+}
+
+li.selected {
+    background-color: rgb(247, 247, 247);
 }
 
 h1 span {
@@ -136,4 +140,22 @@ ul {
     font-weight: bold;
     padding-left: 3px;
     padding-right: 2px;
+}
+
+.issue-head,
+.issue-body {
+    display: block;
+}
+
+.right { 
+    float: right;
+}
+
+.issue-head {
+    cursor: pointer;
+}
+
+.issue-body {
+    padding:20px;
+    padding-bottom: 5px;
 }

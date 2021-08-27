@@ -15,10 +15,9 @@
 	const debugmode = true;
 	const username = "RobinBoers";
 
-	const icons = {
-		repo: "images/repo.svg",
-		issue: "images/issue.svg",
-	}
+	let showFinished = true;
+
+	let clickedIssues = [];
 
 	onMount(() => {
 		const existingRecents = localStorage.getItem("recents");
@@ -262,7 +261,7 @@
 						"performed_via_github_app": null
 					}
 					];
-		} else return JSON.parse(Get("https://api.github.com/repos/"+username+"/"+repo+"/issues?per_page=100"));
+		} else return JSON.parse(Get("https://api.github.com/repos/"+username+"/"+repo+"/issues?per_page=100&state=all"));
 	}
 
 	// Manage recents
@@ -312,10 +311,29 @@
 
 		projectLayout = true;
 
+		if(issues !== null) {
+			for(let i =0;i<issues.length;i++) {
+				clickedIssues[i] = false;
+			}
+		}
+
 	}
 
-	function selectIssue(issue) {
-		window.location = issue.html_url
+	function getURL(repo) {
+		let link = "about:blank";
+		repos.forEach((val, i) => {
+			console.log(val);
+			if(val.name === repo) link = val.html_url;
+		});
+
+		return link;
+	}
+
+	function clickIssue(issue) {
+		for(let i =0;i<issues.length;i++) {
+			if(issues[i] === issue) clickedIssues[i] = !clickedIssues[i];
+			else clickedIssues[i] = false; // disable this to click multiple issues at onece
+		}
 	}
 
 </script>
@@ -371,15 +389,47 @@
 
 			<h1>{currentProject}</h1>
 
-			{#each issues as item}
+			<button on:click={() => {projectLayout = false}}><i class="fas fa-arrow-left"></i> Back</button>
+			<button on:click={() => {window.location = getURL(currentProject)+"/issues/"}}><i class="fab fa-github"></i> View on GitHub</button>
+			<button on:click={() => {showFinished = !showFinished}}>Show finished</button>
+			<button on:click={() => {window.location = getURL(currentProject)+"/issues/new"}}  class="right"><i class="fas fa-plus"></i> New</button>
+
+			{#each issues as item, i}
 							
 				{#if item !== null && item !== ""}
-					<li on:click={selectIssue(item)} >
-						<svg class="icon" viewBox="0 0 18 18" version="1.1" width="18" height="18" aria-hidden="true"><path d="M8 9.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"></path><path fill-rule="evenodd" d="M8 0a8 8 0 100 16A8 8 0 008 0zM1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0z"></path></svg>
-						
-						<span class="num">#{item.number}</span>
-						{item.title}
-					</li>
+
+					{#if item.state === "open" || showFinished === true}
+
+						{#if clickedIssues[i] === true}
+
+							<li class="selected">
+								<span on:click={clickIssue(item)} class="issue-head">
+									<svg class="icon" viewBox="0 0 18 18" version="1.1" width="18" height="18" aria-hidden="true"><path d="M8 9.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"></path><path fill-rule="evenodd" d="M8 0a8 8 0 100 16A8 8 0 008 0zM1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0z"></path></svg>
+
+									<span class="num">#{item.number}</span>
+									{item.title}
+								</span>
+								<span class="issue-body">
+									{#if item.body !== null} 
+										{item.body}
+									{:else}
+										<i>Empty</i>
+									{/if}
+								</span>
+							</li>
+
+						{:else}
+
+							<li on:click={clickIssue(item)} >
+								<svg class="icon" viewBox="0 0 18 18" version="1.1" width="18" height="18" aria-hidden="true"><path d="M8 9.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"></path><path fill-rule="evenodd" d="M8 0a8 8 0 100 16A8 8 0 008 0zM1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0z"></path></svg>
+
+								<span class="num">#{item.number}</span>
+								{item.title}
+							</li>
+
+						{/if}
+
+					{/if}
 				{/if}
 
 			{:else}
