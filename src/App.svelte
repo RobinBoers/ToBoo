@@ -17,7 +17,7 @@
 
 	let showFinished = false;
 
-	let showNoOpen = true;
+	let showNoOpen = false;
 
 	let clickedIssues = [];
 
