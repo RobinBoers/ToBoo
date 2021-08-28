@@ -346,7 +346,7 @@
 
 		{#if projectLayout === false}
 
-			<Repos {repos} {recents} {newRecent} {config} {selectRepo} {getRepos} />
+			<Repos {repos} {recents} {newRecent} {config} {selectRepo} />
 		
 		{:else}
 

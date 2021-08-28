@@ -1,5 +1,5 @@
 <script>
-	export let repos, recents, newRecent, config, selectRepo, getRepos;
+	export let repos, recents, newRecent, config, selectRepo;
 </script>
 
 <h1>To-Boo<span>Your New To-Do App!</span></h1>	
@@ -31,7 +31,7 @@
 	<h2 class="select">Select repository</h2>
 {/if}
 
-<form on:submit|preventDefault={() => selectRepo()}>
+<form on:submit|preventDefault={() => selectRepo(newRecent)}>
 	<select bind:value={newRecent}>
 		<option value="" disabled selected>
 			Select repository
