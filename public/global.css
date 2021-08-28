@@ -26,9 +26,9 @@ a:visited {
     color: rgb(0, 80, 160);
 }
 
-label {
+/* label {
     display: block;
-}
+} */
 
 input,
 button,
@@ -42,6 +42,10 @@ textarea {
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 2px;
+}
+
+select {
+    min-width: 20vw;
 }
 
 input:disabled {
