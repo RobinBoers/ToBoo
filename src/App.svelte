@@ -404,7 +404,7 @@
 
 			<h1>{currentProject}</h1>
 
-			<button on:click={() => {projectLayout = false}}><i class="fas fa-arrow-left"></i> Back</button>
+			<button on:click={() => {projectLayout = false}}><i class="fas fa-arrow-left"></i></button>
 			<button on:click={() => {window.open(getURL(currentProject)+"/issues/", "_blank")}}><i class="fab fa-github"></i> View on GitHub</button>
 
 
@@ -418,10 +418,11 @@
 				{/if}
 			
 			</button>
-
-
-
+			
 			<button on:click={() => {window.open(getURL(currentProject)+"/issues/new", "_blank")}}  class="right"><i class="fas fa-plus"></i> New</button>
+			<button on:click={() => {
+				issues = getIssues(username, currentProject);
+			}} class="right"><i class="fas fa-redo-alt"></i></button>
 
 			{#each issues as item, i}
 							
