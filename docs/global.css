@@ -220,3 +220,39 @@ li p {
     padding: 0px;
     margin: 0px;
 }
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+    body, html {
+        background: #1b1c1d;
+        color: #adadad;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+        color: #fff !important;
+    }
+    
+    hr {
+        border-color: #adadad;
+    }
+    
+    .repos li.repo:not(.selected):hover, .issues li.issue:not(.selected):hover {
+        background-color: #151616;
+        cursor: pointer;
+    }
+    
+    .repos li.selected.repo, .issues li.selected.issue {
+        background-color:  #18191a;
+        padding-bottom:10px;
+    }
+    
+    .icon {
+        fill: #fff;
+    }
+    
+    button, input, textarea {
+        color: white;
+        background-color: #0f1011;
+        border: #151616;
+    }
+}
