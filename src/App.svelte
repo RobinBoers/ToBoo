@@ -12,7 +12,7 @@
 	let currentProject = "";
 	let projectLayout = false;
 
-	const debugmode = true;
+	const debugmode = false;
 	const username = "RobinBoers";
 
 	let showFinished = false;
@@ -306,12 +306,11 @@
 		currentProject = repo;
 		
 		issues = getIssues(username, repo);
+		console.log(issues);
 		if(issues.message) {
 			errorMessage = issues.message;
 			issues = null;
 		}
-
-		console.log(issues)
 
 		projectLayout = true;
 
@@ -378,6 +377,9 @@
 
 			<form on:submit|preventDefault={() => selectRepo()}>
 				<select bind:value={newRecent}>
+					<option value="" disabled selected>
+						Select repository
+					</option>
 					{#each repos as repo}
 						{#if repo.has_issues === true && repo.archived !== true && repo.disabled !== true} 
 							{#if repo.open_issues_count > 0 || showNoOpen}
@@ -403,7 +405,7 @@
 			<h1>{currentProject}</h1>
 
 			<button on:click={() => {projectLayout = false}}><i class="fas fa-arrow-left"></i> Back</button>
-			<button on:click={() => {window.location = getURL(currentProject)+"/issues/"}}><i class="fab fa-github"></i> View on GitHub</button>
+			<button on:click={() => {window.open(getURL(currentProject)+"/issues/", "_blank")}}><i class="fab fa-github"></i> View on GitHub</button>
 
 
 
@@ -419,7 +421,7 @@
 
 
 
-			<button on:click={() => {window.location = getURL(currentProject)+"/issues/new"}}  class="right"><i class="fas fa-plus"></i> New</button>
+			<button on:click={() => {window.open(getURL(currentProject)+"/issues/new", "_blank")}}  class="right"><i class="fas fa-plus"></i> New</button>
 
 			{#each issues as item, i}
 							
