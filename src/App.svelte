@@ -270,7 +270,7 @@
 	// Manage recents
 	function addItemToRecents(item) {
 		recents = [item, ...recents];
-		recents.length = 5;
+		if(recents.length > 5) recents.length = 5;
  		localStorage.setItem('recents', JSON.stringify(recents));
 	}
 	function inRecents(item) {
