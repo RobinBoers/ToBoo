@@ -1,5 +1,6 @@
 <script>
     export let item, clickIssue, clickedIssues, i;
+    let converter = new showdown.Converter();
 </script>
 
 <span on:click={() => {
@@ -25,7 +26,7 @@
 {#if clickedIssues[i] === true}
     <span class="issue-body">
         {#if item.body !== null} 
-            <span class="issue-text">{@html item.body}</span><br>
+            <span class="issue-text">{@html converter.makeHtml(item.body)}</span>
         {:else}
             <i class="empty">No description provided. </i><br>
         {/if}

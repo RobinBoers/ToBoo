@@ -105,19 +105,19 @@ h2.select {
     font-size: 1em;
 }
 
-li {
+.repos li.repo, .issues li.issue {
     list-style: none;
     text-align: initial;
     padding: 15px;
     font-size: 18px;
 }
 
-li:not(.selected):hover {
+.repos li.repo:not(.selected):hover, .issues li.issue:not(.selected):hover {
     background-color: rgb(235, 235, 235);
     cursor: pointer;
 }
 
-li.selected {
+.repos li.selected.repo, .issues li.selected.issue {
     background-color: rgb(247, 247, 247);
     padding-bottom:10px;
 }
@@ -214,4 +214,9 @@ li button {
         margin-left: calc(100vw - 100%);
         margin-right: 0;
     }
+}
+
+li p {
+    padding: 0px;
+    margin: 0px;
 }

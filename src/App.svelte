@@ -372,6 +372,8 @@
 				issues = getIssues(config.username, currentProject);
 			}} class="right reload"><i class="fas fa-redo-alt"></i></button>
 
+			<ul class="issues">
+
 			{#each issues as item, i}
 							
 				{#if item !== null && item !== ""}
@@ -379,11 +381,11 @@
 					{#if item.state === "open" || config.showFinished === true}
 
 						{#if clickedIssues[i] === true}
-							<li class="selected">
+							<li class="issue selected">
 								<Issue {item} {clickIssue} {clickedIssues} {i} />
 							</li>
 						{:else}
-							<li on:click={() => clickIssue(item)}>
+							<li class="issue" on:click={() => clickIssue(item)}>
 								<Issue {item} {clickIssue} {clickedIssues} {i} />
 							</li>
 						{/if}
@@ -394,6 +396,8 @@
 			{:else}
 				<p>This project doesn't have any todos.</p>
 			{/each}
+
+			</ul>
 
 		{/if}
 
