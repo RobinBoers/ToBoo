@@ -166,10 +166,6 @@ ul {
     display: block;
 }
 
-.right { 
-    float: right;
-}
-
 .issue-head {
     cursor: pointer;
 }
@@ -191,4 +187,31 @@ li button {
 
 .reload {
     margin-right: 2px;
+}
+
+.empty {
+    color:#666;
+}
+
+.postedby {
+    padding-left: 5px;
+}
+
+@media (max-width: 375px) {
+    .postedby {
+        padding: 0px;
+        display: block;
+        margin-left: -20px;
+        margin-top: 10px;
+    }
+}
+
+@media (min-width: 467px) {
+    .right { 
+        float: right;
+    }
+}
+
+.issue-text, .empty {
+    font-size: 17px;
 }
