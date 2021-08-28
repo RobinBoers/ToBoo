@@ -38,3 +38,5 @@ You can configure three options:
 - showFinished (wether or not the closed issues should be visible by default)
 - debugmode (if turned on, it will use demo data to prevent going above the API rate limit)
 - showNoOpen (if turned on, it will show repositories with no open issues by default)
+
+![Screenshot](screenshot.png)
