@@ -12,7 +12,7 @@
 	let projectLayout = false;
 
 	let config = {
-		debugmode: true,
+		debugmode: false,
 		username: "RobinBoers",
 		showFinished: false,
 		showNoOpen: false
